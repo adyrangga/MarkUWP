@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:MarkUWP"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:view="using:MarkUWP.Views"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -13,6 +14,9 @@
     <Page.Resources />
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <muxc:NavigationView
             x:Name="SideNav"
             AlwaysShowHeader="False"
@@ -26,14 +30,14 @@
             PaneOpening="OnPaneOpening">
             <muxc:NavigationView.PaneHeader>
                 <Frame Height="160">
-                    <Grid Margin="0 0 10 0">
+                    <Grid Margin="0,0,10,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <TextBlock
                             Grid.Row="0"
-                            Margin="0 10"
+                            Margin="0,10"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Foreground="Blue"
@@ -48,9 +52,9 @@
                 </Frame>
             </muxc:NavigationView.PaneHeader>
             <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem HorizontalAlignment="Stretch" Tag="apps">
+                <muxc:NavigationViewItem HorizontalAlignment="Stretch" Tag="Home">
                     <muxc:NavigationViewItem.Content>
-                        <StackPanel Margin="-5 0 0 0" Orientation="Horizontal">
+                        <StackPanel Margin="-5,0,0,0" Orientation="Horizontal">
                             <Ellipse
                                 Width="18"
                                 Height="18"
@@ -60,7 +64,7 @@
                                 </Ellipse.Fill>
                             </Ellipse>
                             <TextBlock
-                                Margin="14 0 0 0"
+                                Margin="14,0,0,0"
                                 VerticalAlignment="Center"
                                 Text="Custom" />
                         </StackPanel>
@@ -72,7 +76,7 @@
 
         <Grid
             x:Name="BodyContainer"
-            Margin="200 0 0 0"
+            Margin="200,0,0,0"
             HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition Height="160" />
@@ -83,6 +87,45 @@
 
             <view:GridCard Grid.Row="1" />
         </Grid>
+
+
+        <Border
+            x:Name="MainPopup"
+            Grid.Column="0"
+            MinWidth="400"
+            Visibility="Collapsed">
+            <Border.Background>
+                <media:BackdropBlurBrush Amount="10.0" />
+            </Border.Background>
+            <Grid>
+                <Button
+                    Margin="50,50,0,0"
+                    VerticalAlignment="Top"
+                    Background="WhiteSmoke"
+                    Click="MainPopup_ClosePopup"
+                    CornerRadius="10"
+                    Opacity="0.8">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <SymbolIcon
+                            Margin="0,0,10,0"
+                            Foreground="Black"
+                            Symbol="Back" />
+                        <TextBlock
+                            FontSize="15"
+                            Foreground="Black"
+                            Text="Back" />
+                    </StackPanel>
+                </Button>
+
+                <StackPanel
+                    MinWidth="100"
+                    MinHeight="100"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <ContentControl x:Name="PopupContent" />
+                </StackPanel>
+            </Grid>
+        </Border>
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
