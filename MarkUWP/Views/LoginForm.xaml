@@ -1,0 +1,66 @@
+﻿<UserControl
+    x:Class="MarkUWP.Views.LoginForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:MarkUWP.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
+
+    <RelativePanel
+        Grid.Column="0"
+        Width="200"
+        Padding="10"
+        Background="Gray">
+        <TextBlock
+            x:Name="textLabel"
+            Margin="0,0,0,20"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            Text="Login Form"
+            TextWrapping="Wrap" />
+        <TextBox
+            x:Name="inputUsername"
+            Margin="0,0,0,20"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            Header="Username"
+            PlaceholderText="Enter your username"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.Below="textLabel"
+            TextWrapping="Wrap" />
+        <PasswordBox
+            x:Name="inputPassword"
+            Margin="0,0,0,20"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            Header="Password"
+            PlaceholderText="Enter Your Password"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.Below="inputUsername" />
+        <Button
+            x:Name="btnLogin"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            Click="btnLogin_Click"
+            Content="Login"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.Below="inputPassword" />
+        <TextBlock
+            x:Name="textResult"
+            Margin="0,20,0,0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.Below="btnLogin"
+            Text="Not Aunthenticate"
+            TextWrapping="Wrap" />
+
+    </RelativePanel>
+</UserControl>

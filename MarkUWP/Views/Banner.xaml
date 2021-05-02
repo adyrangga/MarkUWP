@@ -1,0 +1,42 @@
+﻿<UserControl
+    x:Class="MarkUWP.Views.Banner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:MarkUWP.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="150"
+    d:DesignWidth="500"
+    mc:Ignorable="d">
+
+    <Grid Background="BlueViolet">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <StackPanel
+                Padding="10"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <PersonPicture
+                    DisplayName="User"
+                    Initials="U"
+                    ProfilePicture="../Assets/Images/UserProfile.png" />
+                <StackPanel Margin="10" VerticalAlignment="Center">
+                    <TextBlock Foreground="White" Text="Welcome" />
+                    <TextBlock Foreground="White" Text="User Name" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid
+            Grid.Column="1"
+            Margin="0,0,10,20"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom">
+            <TextBlock Foreground="White" Text="{x:Bind CurrentDateTime}" />
+        </Grid>
+    </Grid>
+</UserControl>

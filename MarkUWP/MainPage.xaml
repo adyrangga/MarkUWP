@@ -2,39 +2,126 @@
     x:Class="MarkUWP.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MarkUWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:MarkUWP"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:view="using:MarkUWP.Views"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
+
+    <Page.Resources />
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-        </Grid.ColumnDefinitions>
+        <muxc:NavigationView
+            x:Name="SideNav"
+            AlwaysShowHeader="False"
+            CompactModeThresholdWidth="0"
+            ExpandedModeThresholdWidth="{StaticResource MediumWindowBreakpoint}"
+            IsBackButtonVisible="Collapsed"
+            IsSettingsVisible="False"
+            ItemInvoked="SideNav_ItemInvoked"
+            OpenPaneLength="200"
+            PaneClosing="OnPaneClosing"
+            PaneOpening="OnPaneOpening">
+            <muxc:NavigationView.PaneHeader>
+                <Frame Height="160">
+                    <Grid Margin="0 0 10 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Row="0"
+                            Margin="0 10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Foreground="Blue"
+                            Text="Logo" />
+                        <Button
+                            Grid.Row="1"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Bottom"
+                            Background="Blue"
+                            Content="Search" />
+                    </Grid>
+                </Frame>
+            </muxc:NavigationView.PaneHeader>
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem HorizontalAlignment="Stretch" Tag="apps">
+                    <muxc:NavigationViewItem.Content>
+                        <StackPanel Margin="-5 0 0 0" Orientation="Horizontal">
+                            <Ellipse
+                                Width="18"
+                                Height="18"
+                                Margin="0">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="Assets/Images/UserProfile.png" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock
+                                Margin="14 0 0 0"
+                                VerticalAlignment="Center"
+                                Text="Custom" />
+                        </StackPanel>
+                    </muxc:NavigationViewItem.Content>
+                </muxc:NavigationViewItem>
+                <!--<muxc:NavigationViewItem Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>-->
+            </muxc:NavigationView.MenuItems>
+        </muxc:NavigationView>
 
-        <RelativePanel Grid.Column="0" Padding="10">
-            <TextBlock HorizontalAlignment="Stretch" Text="Login Form" TextWrapping="Wrap" VerticalAlignment="Top"
-                   Margin="0 0 0 20"
-                   x:Name="textLabel"/>
-            <TextBox HorizontalAlignment="Stretch" PlaceholderText="Enter your username" TextWrapping="Wrap" VerticalAlignment="Top"
-                     Margin="0 0 0 20"
-                     RelativePanel.Below="textLabel" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                     Header="Username" x:Name="inputUsername"/>
-            <PasswordBox HorizontalAlignment="Stretch" VerticalAlignment="Top" PlaceholderText="Enter Your Password"
-                         Margin="0 0 0 20"
-                         RelativePanel.Below="inputUsername" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                         Header="Password" x:Name="inputPassword"/>
-            <Button Content="Login" VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                    RelativePanel.Below="inputPassword" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                    x:Name="btnLogin" Click="btnLogin_Click"/>
-            <TextBlock HorizontalAlignment="Stretch" Text="Not Aunthenticate" TextWrapping="Wrap" VerticalAlignment="Top"
-                   Margin="0 20 0 0"
-                    RelativePanel.Below="btnLogin" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                   x:Name="textResult"/>
+        <Grid
+            x:Name="BodyContainer"
+            Margin="200 0 0 0"
+            HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-        </RelativePanel>
-        
+            <view:Banner Grid.Row="0" />
+
+            <view:GridCard Grid.Row="1" />
+        </Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <!--  Large window VisualState  -->
+                <VisualState>
+                    <!--  Large window trigger  -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource LargeWindowBreakpoint}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--<Setter Target="BodyContainer.HorizontalAlignment" Value="Center" />-->
+                    </VisualState.Setters>
+
+                </VisualState>
+
+                <!--  Medium window VisualState  -->
+                <VisualState>
+                    <!--  Medium window trigger  -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource MediumWindowBreakpoint}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <!--<Setter Target="BodyContainer.HorizontalAlignment" Value="Center" />-->
+                    </VisualState.Setters>
+
+                </VisualState>
+
+                <!--  Small window VisualState  -->
+                <VisualState>
+                    <!--  Small window trigger  -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="{StaticResource MinWindowBreakpoint}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="BodyContainer.Margin" Value="40 0 0 0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 
 </Page>

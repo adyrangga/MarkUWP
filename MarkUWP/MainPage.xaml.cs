@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -27,14 +15,38 @@ namespace MarkUWP
             this.InitializeComponent();
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void OnPaneClosing(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs args)
         {
-            string username = inputUsername.Text;
-            string password = inputPassword.Password;
+            AdaptiveBodyContainer(sender.IsPaneOpen);
+        }
 
-            if (username == "admin" && password == "admin")
+        private void OnPaneOpening(Microsoft.UI.Xaml.Controls.NavigationView sender, object args)
+        {
+            AdaptiveBodyContainer(sender.IsPaneOpen);
+        }
+
+        private void AdaptiveBodyContainer(bool isPaneOpen)
+        {
+            if (isPaneOpen)
             {
-                textResult.Text = "Authenticated";
+                BodyContainer.Margin = new Thickness(200, 0, 0, 0);
+            }
+            else
+            {
+                BodyContainer.Margin = new Thickness(40, 0, 0, 0);
+            }
+        }
+
+        private void SideNav_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs args)
+        {
+            //if (args.IsSettingsInvoked == true)
+            //{
+            //}
+            //else
+
+            /// handle navigation view item menu click
+            if (args.InvokedItemContainer != null)
+            {
             }
         }
     }
