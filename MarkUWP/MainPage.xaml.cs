@@ -36,6 +36,12 @@ namespace MarkUWP
             AdaptiveBodyContainer(sender.IsPaneOpen);
         }
 
+        private void hamburgerbtn_Click(object sender, RoutedEventArgs e)
+        {
+            mysplitview1.IsPaneOpen = !mysplitview1.IsPaneOpen;
+            AdaptiveBodyContainer(mysplitview1.IsPaneOpen);
+        }
+
         /// <summary>
         /// set Margin BodyContainer from left SideNave
         /// </summary>
@@ -44,11 +50,11 @@ namespace MarkUWP
         {
             if (isPaneOpen)
             {
-                BodyContainer.Margin = new Thickness(200, 0, 0, 0);
+                BodyContainer.Margin = new Thickness(300, 0, 0, 0);
             }
             else
             {
-                BodyContainer.Margin = new Thickness(40, 0, 0, 0);
+                BodyContainer.Margin = new Thickness(60, 0, 0, 0);
             }
         }
 

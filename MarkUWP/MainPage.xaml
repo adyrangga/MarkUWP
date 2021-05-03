@@ -17,66 +17,71 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <muxc:NavigationView
-            x:Name="SideNav"
-            AlwaysShowHeader="False"
-            CompactModeThresholdWidth="0"
-            ExpandedModeThresholdWidth="{StaticResource MediumWindowBreakpoint}"
-            IsBackButtonVisible="Collapsed"
-            IsSettingsVisible="False"
-            ItemInvoked="SideNav_ItemInvoked"
-            OpenPaneLength="200"
-            PaneClosing="OnPaneClosing"
-            PaneOpening="OnPaneOpening">
-            <muxc:NavigationView.PaneHeader>
-                <Frame Height="160">
-                    <Grid Margin="0,0,10,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <TextBlock
-                            Grid.Row="0"
-                            Margin="0,10"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Foreground="Blue"
-                            Text="Logo" />
-                        <Button
-                            Grid.Row="1"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Bottom"
-                            Background="Blue"
-                            Content="Search" />
-                    </Grid>
-                </Frame>
-            </muxc:NavigationView.PaneHeader>
-            <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem HorizontalAlignment="Stretch" Tag="Home">
-                    <muxc:NavigationViewItem.Content>
-                        <StackPanel Margin="-5,0,0,0" Orientation="Horizontal">
-                            <Ellipse
-                                Width="18"
-                                Height="18"
-                                Margin="0">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="Assets/Images/UserProfile.png" />
-                                </Ellipse.Fill>
-                            </Ellipse>
-                            <TextBlock
-                                Margin="14,0,0,0"
-                                VerticalAlignment="Center"
-                                Text="Custom" />
-                        </StackPanel>
-                    </muxc:NavigationViewItem.Content>
-                </muxc:NavigationViewItem>
-                <!--<muxc:NavigationViewItem Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>-->
-            </muxc:NavigationView.MenuItems>
-        </muxc:NavigationView>
+
+        <Grid>
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="auto" />
+
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+
+            <RelativePanel Background="Gray">
+
+                <Button
+                    Background="Transparent"
+                    Name="hamburgerbtn"
+                    Width="60"
+                    Height="45"
+                    Click="hamburgerbtn_Click"
+                    Content=""
+                    FontFamily="Segoe MDL2 Assets" />
+            </RelativePanel>
+            <SplitView
+                Name="mysplitview1"
+                Grid.Row="1"
+                CompactPaneLength="60"
+                DisplayMode="CompactInline"
+                IsPaneOpen="True"
+                OpenPaneLength="300">
+                <SplitView.Pane>
+                    <ListBox >
+                        <ListBox.Background>
+                            <ImageBrush ImageSource="Assets/Images/UserProfile.png" Stretch="Fill"/>
+                        </ListBox.Background>
+                        <ListBoxItem>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    FontFamily="Segoe MDL2 Assets"
+                                    FontSize="45"
+                                    Text="" />
+                                <TextBlock
+                                    Margin="30,0,0,0"
+                                    FontSize="25"
+                                    Text="Search something" />
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock
+                                    FontFamily="Segoe MDL2 Assets"
+                                    FontSize="45"
+                                    Text="" />
+                                <TextBlock
+                                    Margin="30,0,0,0"
+                                    FontSize="25"
+                                    Text="Record something" />
+                            </StackPanel>
+                        </ListBoxItem>
+                    </ListBox>
+                </SplitView.Pane>
+            </SplitView>
+        </Grid>
 
         <Grid
             x:Name="BodyContainer"
-            Margin="200,0,0,0"
+            Margin="300,0,0,0"
             HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition Height="160" />
@@ -160,7 +165,7 @@
                         <AdaptiveTrigger MinWindowWidth="{StaticResource MinWindowBreakpoint}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="BodyContainer.Margin" Value="40 0 0 0" />
+                        <Setter Target="BodyContainer.Margin" Value="60 0 0 0" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
